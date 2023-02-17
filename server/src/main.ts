@@ -3,6 +3,7 @@ import cors from 'cors';
 import express from 'express'
 import helmet from 'helmet';
 import { CORS_ORIGIN } from './constants';
+import userRoute from './modules/user/user.route';
 import { connectToDatabase, disconnectFromDatabase } from './utils/database';
 import logger from './utils/logger';
 
@@ -17,6 +18,8 @@ app.use(cors({
     credentials: true, 
 }))
 app.use(helmet());
+
+app.use('/api/users', userRoute)
 
 const server = app.listen(PORT, async () => {
     await connectToDatabase();
