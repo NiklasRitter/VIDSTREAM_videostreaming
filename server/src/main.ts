@@ -3,6 +3,8 @@ import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 import { CORS_ORIGIN } from "./constants";
+import deserializeUser from "./middleware/deserializeUser";
+import authRoute from "./modules/auth/auth.route";
 import userRoute from "./modules/user/user.route";
 import { connectToDatabase, disconnectFromDatabase } from "./utils/database";
 import logger from "./utils/logger";
@@ -20,8 +22,10 @@ app.use(
   })
 );
 app.use(helmet());
+app.use(deserializeUser);
 
 app.use("/api/users", userRoute);
+app.use("/api/auth", authRoute);
 
 const server = app.listen(PORT, async () => {
   await connectToDatabase();
