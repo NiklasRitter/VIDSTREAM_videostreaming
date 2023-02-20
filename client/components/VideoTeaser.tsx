@@ -4,10 +4,6 @@ import Link from "next/link";
 import { Video } from "../types";
 
 function VideoTeaser({ video }: { video: Video }) {
-  const res = getThumbnail(video.thumbnailId);
-  console.log(res);
-
-  //TODO: Put in a thumbnail
   return (
     <Link href={`/watch/${video.videoId}`} passHref>
       <Card shadow="sm" p="xl" component="a" href={`/watch/${video.videoId}`}>

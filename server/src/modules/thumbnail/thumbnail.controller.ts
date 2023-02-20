@@ -68,9 +68,6 @@ export async function updateThumbnailHandler(
   const { thumbnailId } = req.params;
   const { videoId } = req.body;
 
-  console.log(thumbnailId);
-  console.log(videoId);
-
   const { _id: userId } = res.locals.user;
 
   const thumbnail = await findThumbnail(thumbnailId);
