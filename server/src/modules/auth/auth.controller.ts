@@ -26,7 +26,7 @@ export async function loginHandler(
   res.cookie("accessToken", jwt, {
     maxAge: 3.154e10, // 1 year
     httpOnly: true,
-    domain: "localhost", //TODO: Set an env var
+    domain: process.env.DOMAIN || "localhost",
     path: "/",
     sameSite: "strict",
     secure: false,
