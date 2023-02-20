@@ -26,10 +26,10 @@ export async function loginHandler(
   res.cookie("accessToken", jwt, {
     maxAge: 3.154e10, // 1 year
     httpOnly: true,
-    domain: "localhost", //TODO: Set an env var
+    domain: process.env.DOMAIN || "localhost",
     path: "/",
     sameSite: "strict",
-    secure: false, //TODO: should be true, if deployed
+    secure: false,
   });
 
   return res.status(StatusCodes.OK).send(jwt);
