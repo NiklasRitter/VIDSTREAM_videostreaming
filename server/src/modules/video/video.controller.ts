@@ -7,7 +7,7 @@ import { createVideo, findPublishedVideos, findVideo } from "./video.service";
 import { UpdateVideoBody, UpdateVideoParams } from "./video.schema";
 
 const MIME_TYPES = ["video/mp4"];
-const CHUNK_SIZE_IN_BYTES = 1000000; // 1MB //TODO: Could be determined of the internet speed
+const CHUNK_SIZE_IN_BYTES = 1000000; // 1MB //TODO: Could be determined depending on the internet speed
 
 function getPath({
   videoId,
