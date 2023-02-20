@@ -13,11 +13,6 @@ function HomePageLayout({ children }: { children: React.ReactNode }) {
     <VideosContextProvider>
       <AppShell
         padding="md"
-        navbar={
-          <Navbar width={{ base: 100 }} height={500} p="xs">
-            Side items
-          </Navbar>
-        }
         header={
           <Header height={60} p="xs">
             <Box sx={() => ({ display: "flex" })}>
