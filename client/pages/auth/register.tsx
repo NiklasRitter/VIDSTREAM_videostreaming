@@ -15,7 +15,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useMutation } from "react-query";
 
-export default function RegisterPage() {
+function RegisterPage() {
   const router = useRouter();
 
   const form = useForm({
@@ -103,3 +103,5 @@ export default function RegisterPage() {
     </>
   );
 }
+
+export default RegisterPage;

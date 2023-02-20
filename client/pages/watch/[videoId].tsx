@@ -18,5 +18,4 @@ function WatchVideoPage() {
   );
 }
 
-//TODO: export default on top or bottom?
 export default WatchVideoPage;

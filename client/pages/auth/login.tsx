@@ -15,7 +15,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useMutation } from "react-query";
 
-export default function LoginPage() {
+function LoginPage() {
   const router = useRouter();
 
   const form = useForm({
@@ -69,3 +69,5 @@ export default function LoginPage() {
     </>
   );
 }
+
+export default LoginPage;

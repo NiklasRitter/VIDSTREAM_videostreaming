@@ -72,7 +72,7 @@ function EditVideoForm({
   );
 }
 
-export default function UploadVideo() {
+function UploadVideo() {
   // "stateful variables"
   const [opened, setOpened] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -144,3 +144,5 @@ export default function UploadVideo() {
     </>
   );
 }
+
+export default UploadVideo;

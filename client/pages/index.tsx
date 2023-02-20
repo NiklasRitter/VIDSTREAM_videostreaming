@@ -8,7 +8,7 @@ import { useVideo } from "@/context/videos";
 import { SimpleGrid } from "@mantine/core";
 import VideoTeaser from "@/components/VideoTeaser";
 
-export default function Home() {
+function Home() {
   const { videos } = useVideo();
 
   return (
@@ -25,3 +25,5 @@ export default function Home() {
 Home.getLayout = function getLayout(page: ReactElement) {
   return <HomePageLayout>{page}</HomePageLayout>;
 };
+
+export default Home;
