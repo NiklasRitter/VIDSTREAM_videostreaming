@@ -15,7 +15,7 @@ export class Thumbnail {
   public owner: Ref<User>;
 
   @prop()
-  public videoId: string; //TODO: ref on a video?
+  public videoId: string;
 }
 
 export const ThumbnailModel = getModelForClass(Thumbnail, {

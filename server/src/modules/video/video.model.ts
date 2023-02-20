@@ -9,7 +9,7 @@ export class Video {
   public title: string;
 
   @prop()
-  public thumbnailId: string; //TODO: thumbnail needed ???
+  public thumbnailId: string;
 
   @prop()
   public description: string;
