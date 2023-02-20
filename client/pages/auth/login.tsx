@@ -9,7 +9,7 @@ import {
   Title,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { showNotification, updateNotification } from "@mantine/notifications";
+import { showNotification } from "@mantine/notifications";
 import { AxiosError } from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -34,6 +34,11 @@ function LoginPage() {
     Parameters<typeof loginUser>["0"]
   >(loginUser, {
     onSuccess: () => {
+      showNotification({
+        id: "login",
+        title: "Success",
+        message: "Successfully logged in",
+      });
       router.push("/");
     },
   });

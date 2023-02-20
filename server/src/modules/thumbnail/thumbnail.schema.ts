@@ -1,4 +1,4 @@
-import { boolean, object, string, TypeOf } from "zod";
+import { object, string, TypeOf } from "zod";
 
 export const updateThumbnailSchema = {
   body: object({

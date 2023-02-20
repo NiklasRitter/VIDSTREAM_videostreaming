@@ -74,9 +74,7 @@ function EditVideoForm({
 
   function upload(files: File[]) {
     const formData = new FormData();
-
     formData.append("image", files[0]);
-
     mutationUploadThumbail.mutate({ formData, config });
   }
 

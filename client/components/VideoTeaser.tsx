@@ -1,5 +1,4 @@
-import { getThumbnail } from "@/api";
-import { Box, Card, Text, Image } from "@mantine/core";
+import { Card, Text, Image } from "@mantine/core";
 import Link from "next/link";
 import { Video } from "../types";
 

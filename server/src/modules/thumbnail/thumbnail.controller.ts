@@ -47,7 +47,6 @@ export async function uploadThumbnailHandler(req: Request, res: Response) {
     file.pipe(stream);
   });
 
-  // when uploading the thumbnail is finished
   bb.on("close", () => {
     res.writeHead(StatusCodes.CREATED, {
       Connection: "close",
