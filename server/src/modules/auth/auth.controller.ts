@@ -29,7 +29,7 @@ export async function loginHandler(
     domain: "localhost", //TODO: Set an env var
     path: "/",
     sameSite: "strict",
-    secure: false, //TODO: should be true, if deployed
+    secure: false,
   });
 
   return res.status(StatusCodes.OK).send(jwt);

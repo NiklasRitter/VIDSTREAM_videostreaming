@@ -7,7 +7,7 @@ import { createVideo, findPublishedVideos, findVideo } from "./video.service";
 import { UpdateVideoBody, UpdateVideoParams } from "./video.schema";
 
 const MIME_TYPES = ["video/mp4"];
-const CHUNK_SIZE_IN_BYTES = 1000000; // 1MB //TODO: Could be determined depending on the internet speed
+const CHUNK_SIZE_IN_BYTES = 1000000; // 1MB
 
 function getPath({
   videoId,
@@ -29,7 +29,6 @@ export async function uploadVideoHandler(req: Request, res: Response) {
   // video uploading
   bb.on("file", async (_, file, info) => {
     if (!MIME_TYPES.includes(info.mimeType)) {
-      //TODO: delete created video - just create video afterwards?
       return res.status(StatusCodes.BAD_REQUEST).send("Invalid file type");
     }
 
