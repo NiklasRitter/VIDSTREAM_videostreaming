@@ -4,7 +4,6 @@ import { useQuery, RefetchOptions, RefetchQueryFilters } from "react-query";
 import { getCurrentUser } from "../api";
 import { CurrentUser, QueryKeys } from "../types";
 
-//TODO: ???
 const CurrentUserContext = createContext<{
   user: CurrentUser;
   refetch: <TPageData>(
