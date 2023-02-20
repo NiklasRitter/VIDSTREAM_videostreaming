@@ -1,12 +1,22 @@
-import { Card, Text } from "@mantine/core";
+import { getThumbnail } from "@/api";
+import { Box, Card, Text, Image } from "@mantine/core";
 import Link from "next/link";
 import { Video } from "../types";
 
 function VideoTeaser({ video }: { video: Video }) {
+  const res = getThumbnail(video.thumbnailId);
+  console.log(res);
+
   //TODO: Put in a thumbnail
   return (
     <Link href={`/watch/${video.videoId}`} passHref>
       <Card shadow="sm" p="xl" component="a" href={`/watch/${video.videoId}`}>
+        <Image
+          src={`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/thumbnails/${video.thumbnailId}`}
+          alt="thumbnail"
+          width={"100%"}
+          height={180}
+        />
         <Text weight={500} size="lg">
           {video.title}
         </Text>

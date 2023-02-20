@@ -1,6 +1,11 @@
-import { updateVideo, uploadVideo } from "@/api";
+import {
+  updateThumbnail,
+  updateVideo,
+  uploadThumbnail,
+  uploadVideo,
+} from "@/api";
 import { useVideo } from "@/context/videos";
-import { Video } from "@/types";
+import { Thumbnail, Video } from "@/types";
 import {
   Button,
   Group,
@@ -34,7 +39,7 @@ function EditVideoForm({
     },
   });
 
-  const mutation = useMutation<
+  const mutation1 = useMutation<
     AxiosResponse<Video>,
     AxiosError,
     Parameters<typeof updateVideo>["0"]
@@ -45,11 +50,40 @@ function EditVideoForm({
     },
   });
 
+  const mutation3 = useMutation<
+    AxiosResponse<Thumbnail>,
+    AxiosError,
+    Parameters<typeof updateThumbnail>["0"]
+  >(updateThumbnail);
+
+  const [progress, setProgress] = useState(0);
+
+  const mutation2 = useMutation(uploadThumbnail);
+
+  const config = {
+    onUploadProgress: (progressEvent: any) => {
+      const percent = Math.round(
+        (progressEvent.loaded * 100) / progressEvent.total
+      );
+      setProgress(percent);
+    },
+  };
+
+  function upload(files: File[]) {
+    const formData = new FormData();
+
+    formData.append("image", files[0]);
+
+    mutation2.mutate({ formData, config });
+  }
+
   return (
     <form
-      onSubmit={form.onSubmit((values) =>
-        mutation.mutate({ videoId, ...values })
-      )}
+      onSubmit={form.onSubmit((values) => {
+        const thumbnailId = mutation2.data.thumbnailId;
+        mutation3.mutate({ thumbnailId, videoId });
+        mutation1.mutate({ videoId, thumbnailId, ...values });
+      })}
     >
       <Stack>
         <TextInput
@@ -64,6 +98,33 @@ function EditVideoForm({
           required
           {...form.getInputProps("description")}
         />
+
+        {progress === 0 && (
+          <Dropzone
+            onDrop={(files) => {
+              upload(files);
+            }}
+            accept={[MIME_TYPES.png]}
+            multiple={false}
+            children={
+              <Group
+                position="center"
+                spacing="xl"
+                style={{
+                  minHeight: "50vh",
+                  justifyContent: "center",
+                }}
+              >
+                <ArrowBigUpLine />
+                <Text>Drag thumbnail here or click to find</Text>
+              </Group>
+            }
+          ></Dropzone>
+        )}
+
+        {progress > 0 && (
+          <Progress size="xl" label={`${progress}%`} value={progress} mb="xl" />
+        )}
 
         <Switch label="Published" {...form.getInputProps("published")} />
         <Button type="submit">Save</Button>

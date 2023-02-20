@@ -9,6 +9,18 @@ export interface Video {
   extension: string;
   description: string;
   title: string;
+  thumbnailId: string;
+}
+
+export interface Thumbnail {
+  _id: string;
+  owner: string;
+  videoId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+  extension: string;
+  thumbnailId: string;
 }
 
 export enum QueryKeys {
