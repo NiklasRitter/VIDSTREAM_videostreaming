@@ -5,6 +5,7 @@ import helmet from "helmet";
 import { CORS_ORIGIN } from "./constants";
 import deserializeUser from "./middleware/deserializeUser";
 import authRoute from "./modules/auth/auth.route";
+import thumbnailRoute from "./modules/thumbnail/thumbnail.route";
 import userRoute from "./modules/user/user.route";
 import videoRoute from "./modules/video/video.route";
 import { connectToDatabase, disconnectFromDatabase } from "./utils/database";
@@ -28,6 +29,7 @@ app.use(deserializeUser);
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/videos", videoRoute);
+app.use("/api/thumbnails", thumbnailRoute);
 
 const server = app.listen(PORT, async () => {
   await connectToDatabase();

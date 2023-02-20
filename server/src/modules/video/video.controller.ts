@@ -67,7 +67,7 @@ export async function updateVideoHandler(
   res: Response
 ) {
   const { videoId } = req.params;
-  const { title, description, published } = req.body;
+  const { title, thumbnailId, description, published } = req.body;
 
   const { _id: userId } = res.locals.user;
 
@@ -82,6 +82,7 @@ export async function updateVideoHandler(
   }
 
   video.title = title;
+  video.thumbnailId = thumbnailId;
   video.description = description;
   video.published = published;
 

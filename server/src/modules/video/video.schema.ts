@@ -3,6 +3,7 @@ import { boolean, object, string, TypeOf } from "zod";
 export const updateVideoSchema = {
   body: object({
     title: string(),
+    thumbnailId: string(), //TODO: Do I need the thumbnail on the video?
     description: string(),
     published: boolean(),
   }),

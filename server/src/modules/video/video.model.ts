@@ -9,6 +9,9 @@ export class Video {
   public title: string;
 
   @prop()
+  public thumbnailId: string; //TODO: thumbnail needed ???
+
+  @prop()
   public description: string;
 
   @prop({ enum: ["mp4"] })
