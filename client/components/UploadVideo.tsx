@@ -140,7 +140,9 @@ function UploadVideo() {
         )}
       </Modal>
 
-      <Button onClick={() => setOpened(true)}>Upload video</Button>
+      <Button onClick={() => setOpened(true)} variant="filled" color="gray">
+        Upload video
+      </Button>
     </>
   );
 }

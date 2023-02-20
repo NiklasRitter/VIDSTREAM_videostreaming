@@ -14,6 +14,7 @@ import { AxiosError } from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useMutation } from "react-query";
+import styles from "@/styles/Home.module.css";
 
 function RegisterPage() {
   const router = useRouter();
@@ -61,45 +62,49 @@ function RegisterPage() {
   return (
     <>
       <Head>
-        <title>Register Page</title>
+        <title>VIDSTREAM - Register</title>
       </Head>
 
-      <Container>
-        <Title>Register</Title>
+      <div className={styles.centered_vertical}>
+        <Container>
+          <Title>Register</Title>
 
-        <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-          <form onSubmit={form.onSubmit((values) => mutation.mutate(values))}>
-            <Stack>
-              <TextInput
-                label="Email"
-                placeholder="email@example.com"
-                required
-                {...form.getInputProps("email")}
-              />
-              <TextInput
-                label="Username"
-                placeholder="JohnDoe"
-                required
-                {...form.getInputProps("username")}
-              />
-              <PasswordInput
-                label="Password"
-                placeholder="Type in your password"
-                required
-                {...form.getInputProps("password")}
-              />
-              <PasswordInput
-                label="Confirm password"
-                placeholder="Confirm your password"
-                required
-                {...form.getInputProps("confirmPassword")}
-              />
+          <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+            <form onSubmit={form.onSubmit((values) => mutation.mutate(values))}>
+              <Stack>
+                <TextInput
+                  label="Email"
+                  placeholder="email@example.com"
+                  required
+                  {...form.getInputProps("email")}
+                />
+                <TextInput
+                  label="Username"
+                  placeholder="JohnDoe"
+                  required
+                  {...form.getInputProps("username")}
+                />
+                <PasswordInput
+                  label="Password"
+                  placeholder="Type in your password"
+                  required
+                  {...form.getInputProps("password")}
+                />
+                <PasswordInput
+                  label="Confirm password"
+                  placeholder="Confirm your password"
+                  required
+                  {...form.getInputProps("confirmPassword")}
+                />
 
-              <Button type="submit">Register</Button>
-            </Stack>
-          </form>
-        </Paper>
-      </Container>
+                <Button type="submit" variant="filled" color="gray">
+                  Register
+                </Button>
+              </Stack>
+            </form>
+          </Paper>
+        </Container>
+      </div>
     </>
   );
 }

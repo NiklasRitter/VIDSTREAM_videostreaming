@@ -14,6 +14,7 @@ import { AxiosError } from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useMutation } from "react-query";
+import styles from "@/styles/Home.module.css";
 
 function LoginPage() {
   const router = useRouter();
@@ -40,32 +41,36 @@ function LoginPage() {
   return (
     <>
       <Head>
-        <title>Login Page</title>
+        <title>VIDSTREAM - Login</title>
       </Head>
 
-      <Container>
-        <Title>Login</Title>
+      <div className={styles.centered_vertical}>
+        <Container>
+          <Title>Login</Title>
 
-        <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-          <form onSubmit={form.onSubmit((values) => mutation.mutate(values))}>
-            <Stack>
-              <TextInput
-                label="Email"
-                placeholder="email@example.com"
-                required
-                {...form.getInputProps("email")}
-              />
-              <PasswordInput
-                label="Password"
-                placeholder="Type in your password"
-                required
-                {...form.getInputProps("password")}
-              />
-              <Button type="submit">Login</Button>
-            </Stack>
-          </form>
-        </Paper>
-      </Container>
+          <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+            <form onSubmit={form.onSubmit((values) => mutation.mutate(values))}>
+              <Stack>
+                <TextInput
+                  label="Email"
+                  placeholder="email@example.com"
+                  required
+                  {...form.getInputProps("email")}
+                />
+                <PasswordInput
+                  label="Password"
+                  placeholder="Type in your password"
+                  required
+                  {...form.getInputProps("password")}
+                />
+                <Button type="submit" variant="filled" color="gray">
+                  Login
+                </Button>
+              </Stack>
+            </form>
+          </Paper>
+        </Container>
+      </div>
     </>
   );
 }

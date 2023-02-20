@@ -1,4 +1,4 @@
-import { AppShell, Header, Navbar, Box, Anchor } from "@mantine/core";
+import { AppShell, Header, Box, Anchor } from "@mantine/core";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,27 +13,23 @@ function HomePageLayout({ children }: { children: React.ReactNode }) {
     <VideosContextProvider>
       <AppShell
         padding="md"
-        navbar={
-          <Navbar width={{ base: 100 }} height={500} p="xs">
-            Side items
-          </Navbar>
-        }
         header={
-          <Header height={60} p="xs">
-            <Box sx={() => ({ display: "flex" })}>
+          <Header height={120} p="xs">
+            <Box sx={() => ({ display: "flex", alignItems: "center" })}>
               <Box sx={() => ({ flex: "1" })}>
-                <Image src="/logo.png" alt="logo" width={100} height={40} />
+                <Link href={`/`} passHref>
+                  <Image src="/logo.png" alt="logo" width={250} height={100} />
+                </Link>
               </Box>
-
               {!user && (
                 <>
                   <Link href="/auth/login" passHref>
-                    <Anchor ml="lg" mr="lr">
+                    <Anchor ml="lg" mr="lr" color={"dimmed"}>
                       Login
                     </Anchor>
                   </Link>
                   <Link href="/auth/register" passHref>
-                    <Anchor ml="lg" mr="lr">
+                    <Anchor ml="lg" mr="lr" color={"dimmed"}>
                       Register
                     </Anchor>
                   </Link>

@@ -1,14 +1,17 @@
+import HomePageLayout from "@/layout/Home";
 import { useRouter } from "next/router";
+import { ReactElement } from "react";
+import styles from "@/styles/Home.module.css";
 
 //TODO: Add some styling
 function WatchVideoPage() {
   const { query } = useRouter();
 
   return (
-    <div>
+    <div className={styles.centered_horizontal}>
       <video
         src={`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/videos/${query.videoId}`}
-        width="800px"
+        width="1000px"
         height="auto"
         controls
         autoPlay
@@ -17,5 +20,9 @@ function WatchVideoPage() {
     </div>
   );
 }
+
+WatchVideoPage.getLayout = function getLayout(page: ReactElement) {
+  return <HomePageLayout>{page}</HomePageLayout>;
+};
 
 export default WatchVideoPage;
