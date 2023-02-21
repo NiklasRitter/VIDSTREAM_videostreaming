@@ -9,10 +9,9 @@ function VideoTeaser({ video }: { video: Video }) {
         <Image
           src={`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/thumbnails/${video.thumbnailId}`}
           alt="thumbnail"
-          width={"100%"}
-          height={180}
+          height={270}
         />
-        <Text weight={500} size="lg">
+        <Text mt={8} weight={500} size="lg">
           {video.title}
         </Text>
         <Text size="sm">{video.description}</Text>

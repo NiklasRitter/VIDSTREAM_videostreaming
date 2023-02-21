@@ -10,7 +10,7 @@ function Home() {
 
   return (
     <div className={styles.container}>
-      <SimpleGrid cols={3}>
+      <SimpleGrid cols={4}>
         {(videos || []).map((video) => {
           return <VideoTeaser key={video.videoId} video={video} />;
         })}
