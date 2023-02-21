@@ -1,9 +1,14 @@
 # VIDSTREAM video-streaming-platform
 
-## Screenshots
+## User Interface
 
 <img src="client/public/mainpage.png" align="center">
+
+
 <img src="client/public/uploadVideo.png" align="center">
+
+- Upload videos
+
 <img src="client/public/watchVideo.png" align="center">
-<img src="client/public/register.png" width="50%" align="left">
-<img src="client/public/login.png" width="50%" align="right">
+
+- Stream videos
