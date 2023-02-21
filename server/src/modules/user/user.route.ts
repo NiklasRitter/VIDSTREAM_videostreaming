@@ -16,4 +16,4 @@ router.post(
   registerUserHandler
 );
 
-export default router; 
+export default router;

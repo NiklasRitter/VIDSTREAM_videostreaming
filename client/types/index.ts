@@ -20,7 +20,6 @@ export interface Thumbnail {
   updatedAt: Date;
   __v: number;
   extension: string;
-  thumbnailId: string;
 }
 
 export enum QueryKeys {

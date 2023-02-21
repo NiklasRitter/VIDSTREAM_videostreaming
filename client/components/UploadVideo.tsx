@@ -62,6 +62,7 @@ function EditVideoForm({
 
   const mutationUploadThumbail = useMutation(uploadThumbnail);
 
+  // stateful variables
   const [progressThumbnail, setProgressThumbnail] = useState(0);
   const config = {
     onUploadProgress: (progressEvent: any) => {
@@ -140,7 +141,7 @@ function EditVideoForm({
 }
 
 function UploadVideo() {
-  // "stateful variables"
+  // stateful variables
   const [opened, setOpened] = useState(false);
   const [progressVideo, setProgressVideo] = useState(0);
 
