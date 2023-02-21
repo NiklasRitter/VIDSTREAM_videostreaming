@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { ReactElement } from "react";
 import styles from "@/styles/Home.module.css";
 
-//TODO: Add some styling
 function WatchVideoPage() {
   const { query } = useRouter();
 

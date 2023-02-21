@@ -1,6 +1,11 @@
-import { updateVideo, uploadVideo } from "@/api";
+import {
+  updateThumbnail,
+  updateVideo,
+  uploadThumbnail,
+  uploadVideo,
+} from "@/api";
 import { useVideo } from "@/context/videos";
-import { Video } from "@/types";
+import { Thumbnail, Video } from "@/types";
 import {
   Button,
   Group,
@@ -21,35 +26,65 @@ import { ArrowBigUpLine } from "tabler-icons-react";
 function EditVideoForm({
   videoId,
   setOpened,
+  setProgressVideo,
 }: {
   videoId: string;
   setOpened: Dispatch<SetStateAction<boolean>>;
+  setProgressVideo: Dispatch<SetStateAction<number>>;
 }) {
   const { refetch } = useVideo();
   const form = useForm({
     initialValues: {
       title: "",
       description: "",
-      published: true,
+      published: false,
     },
   });
 
-  const mutation = useMutation<
+  const mutationUpdateVideo = useMutation<
     AxiosResponse<Video>,
     AxiosError,
     Parameters<typeof updateVideo>["0"]
   >(updateVideo, {
     onSuccess: () => {
       setOpened(false);
+      setProgressVideo(0);
+      setProgressThumbnail(0);
       refetch();
     },
   });
 
+  const mutationUpdateThumbnail = useMutation<
+    AxiosResponse<Thumbnail>,
+    AxiosError,
+    Parameters<typeof updateThumbnail>["0"]
+  >(updateThumbnail);
+
+  const mutationUploadThumbail = useMutation(uploadThumbnail);
+
+  const [progressThumbnail, setProgressThumbnail] = useState(0);
+  const config = {
+    onUploadProgress: (progressEvent: any) => {
+      const percent = Math.round(
+        (progressEvent.loaded * 100) / progressEvent.total
+      );
+      setProgressThumbnail(percent);
+    },
+  };
+
+  function upload(files: File[]) {
+    const formData = new FormData();
+    formData.append("image", files[0]);
+    mutationUploadThumbail.mutate({ formData, config });
+  }
+
   return (
     <form
-      onSubmit={form.onSubmit((values) =>
-        mutation.mutate({ videoId, ...values })
-      )}
+      onSubmit={form.onSubmit((values) => {
+        const thumbnailId = mutationUploadThumbail.data.thumbnailId;
+        mutationUpdateThumbnail.mutate({ thumbnailId, videoId });
+        mutationUpdateVideo.mutate({ videoId, thumbnailId, ...values });
+      })}
     >
       <Stack>
         <TextInput
@@ -65,6 +100,38 @@ function EditVideoForm({
           {...form.getInputProps("description")}
         />
 
+        {progressThumbnail === 0 && (
+          <Dropzone
+            onDrop={(files) => {
+              upload(files);
+            }}
+            accept={[MIME_TYPES.png]}
+            multiple={false}
+            children={
+              <Group
+                position="center"
+                spacing="xl"
+                style={{
+                  minHeight: "50vh",
+                  justifyContent: "center",
+                }}
+              >
+                <ArrowBigUpLine />
+                <Text>Drag thumbnail here or click to find</Text>
+              </Group>
+            }
+          ></Dropzone>
+        )}
+
+        {progressThumbnail > 0 && (
+          <Progress
+            size="xl"
+            label={`${progressThumbnail}%`}
+            value={progressThumbnail}
+            mb="xl"
+          />
+        )}
+
         <Switch label="Published" {...form.getInputProps("published")} />
         <Button type="submit">Save</Button>
       </Stack>
@@ -75,7 +142,7 @@ function EditVideoForm({
 function UploadVideo() {
   // "stateful variables"
   const [opened, setOpened] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [progressVideo, setProgressVideo] = useState(0);
 
   const mutation = useMutation(uploadVideo);
 
@@ -84,7 +151,7 @@ function UploadVideo() {
       const percent = Math.round(
         (progressEvent.loaded * 100) / progressEvent.total
       );
-      setProgress(percent);
+      setProgressVideo(percent);
     },
   };
 
@@ -105,7 +172,7 @@ function UploadVideo() {
         title="Upload video"
         size="xl"
       >
-        {progress === 0 && (
+        {progressVideo === 0 && (
           <Dropzone
             onDrop={(files) => {
               upload(files);
@@ -128,14 +195,20 @@ function UploadVideo() {
           ></Dropzone>
         )}
 
-        {progress > 0 && (
-          <Progress size="xl" label={`${progress}%`} value={progress} mb="xl" />
+        {progressVideo > 0 && (
+          <Progress
+            size="xl"
+            label={`${progressVideo}%`}
+            value={progressVideo}
+            mb="xl"
+          />
         )}
 
-        {mutation.data && (
+        {mutation.data && progressVideo > 0 && (
           <EditVideoForm
             setOpened={setOpened}
             videoId={mutation.data.videoId}
+            setProgressVideo={setProgressVideo}
           />
         )}
       </Modal>

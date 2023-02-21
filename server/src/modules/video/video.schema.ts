@@ -3,6 +3,7 @@ import { boolean, object, string, TypeOf } from "zod";
 export const updateVideoSchema = {
   body: object({
     title: string(),
+    thumbnailId: string(),
     description: string(),
     published: boolean(),
   }),
