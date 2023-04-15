@@ -1,6 +1,6 @@
 # VIDSTREAM video-streaming-platform
 VIDSTREAM is a TypeScript Application for uploading and streaming videos. 
-<br\>
+
 This repository contains the Node.js/Express Backend as well as the Next.js Frontend.
 
 ## Features
