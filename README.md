@@ -43,3 +43,7 @@ This repository contains the Node.js/Express Backend as well as the Next.js Fron
 - [MantineUI](https://mantine.dev)
 - [TypeScript](https://www.typescriptlang.org)
 - [react-query](https://tanstack.com/query/v3/)
+
+## Support
+If there are any questions or concerns feel free to concact us.
+We are looking forward to helping you.
