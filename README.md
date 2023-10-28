@@ -44,6 +44,9 @@ This repository contains the Node.js/Express Backend as well as the Next.js Fron
 - [TypeScript](https://www.typescriptlang.org)
 - [react-query](https://tanstack.com/query/v3/)
 
+## Next Steps
+- Improve UI 
+
 ## Support
 If there are any questions or concerns feel free to concact me.
 I am looking forward to helping you.
